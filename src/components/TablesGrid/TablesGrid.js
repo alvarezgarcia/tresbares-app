@@ -16,10 +16,8 @@ class TablesGrid extends Component {
   }
 
   async componentDidMount() {
-    let allTables;
-
     try {
-      allTables = await table.getAll();
+      const allTables = await table.getAll();
       this.setState({tables: allTables})
     } catch (err) {
       console.log(err);

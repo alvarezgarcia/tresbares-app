@@ -19,8 +19,8 @@ class Main extends Component {
 
         <Content>
           <Switch>
-            <Route path="/grilla" render={ () => <TablesGrid/> }/>
-            <Route path="/detalle/:mesaNumber" render={ () => <TableDetail/> }/>
+            <Route path="/grilla" render={ () => <TablesGrid /> }/>
+            <Route path="/detalle/:tableId" render={ (props) => <TableDetail tableId={props.match.params.tableId} /> }/>
 
             <Redirect to="/grilla" />
           </Switch>

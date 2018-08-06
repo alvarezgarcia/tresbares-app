@@ -21,10 +21,9 @@ function TBCardHeader(props) {
         <Chip>Mesa {props.info.tableNumber} (<i>{buildHumanDate(props.info.openAt)}</i>)</Chip> :
         <Chip>Mesa {props.info.tableNumber}</Chip>
       }
-      <Link to={`/detalle/${props.info.tableNumber}`}><Chip>+</Chip></Link>
+      <Link to={`/detalle/${props.info._id}`}><Chip>+</Chip></Link>
     </CardTitle>
   )
-
 }
 
 /*
