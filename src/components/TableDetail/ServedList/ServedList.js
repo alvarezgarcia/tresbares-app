@@ -2,15 +2,14 @@ import React from 'react';
 import { DataTable, TableHeader, FABButton, Icon } from 'react-mdl';
 
 import GenericDishList from './../../misc/GenericDishList/GenericDishList';
-import AddDishButton from './../AddDishButton/AddDishButton';
+import RemoveDishButton from './../RemoveDishButton/RemoveDishButton';
 
-function prepareDishesForList({dishes, addDishFn}) {
-
+function prepareDishesForList({dishes, removeDishFn}) {
 	const list = dishes.map(d => {
 		return {
 			name: d.name,
 			price: d.price,
-			operation: <AddDishButton dishId={d._id} addDishFn={addDishFn} />
+			operation: <RemoveDishButton dishId={d.productId} removeDishFn={removeDishFn} />
 		};
 	});
 
@@ -18,10 +17,10 @@ function prepareDishesForList({dishes, addDishFn}) {
 }
 
 
-function DishesList(props) {
+function ServedList(props) {
 	const list = prepareDishesForList(props);
 
 	return <GenericDishList list={list} />;
 }
 
-export default DishesList;
+export default ServedList;
