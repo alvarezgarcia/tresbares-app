@@ -9,7 +9,7 @@ function prepareDishesForList({dishes, removeDishFn}) {
 		return {
 			name: d.name,
 			price: d.price,
-			operation: <RemoveDishButton dishId={d.productId} removeDishFn={removeDishFn} />
+			operation: <RemoveDishButton servedId={d.idServed} removeDishFn={removeDishFn} />
 		};
 	});
 

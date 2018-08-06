@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+
 import { Grid, Cell } from 'react-mdl';
 
 import { dish, table } from './../../utils/api';
@@ -35,8 +37,11 @@ class TableDetail extends Component {
 	async addDishToTable(dishId) {
 		const dish = this.state.dishes.find(dish => dish._id === dishId)
 
+    const idServedBasedOnTimestamp = moment().valueOf();
+    const updatedDish = Object.assign({}, dish, {idServed: idServedBasedOnTimestamp});
+
 		try {
-			const dishAdded = await table.addDish(this.state.table._id, dish);
+			const dishAdded = await table.addDish(this.state.table._id, updatedDish);
 
       const {table: tableToUpdate} = this.state;
       const {served} = tableToUpdate;
@@ -49,8 +54,20 @@ class TableDetail extends Component {
 		}
 	}
 
-  async removeDishFromTable(productId) {
-    console.log('remove', productId);
+  async removeDishFromTable(idServed) {
+    try {
+      await table.removeDish(this.state.table._id, idServed);
+
+      const {table: tableToUpdate} = this.state;
+      const {served} = tableToUpdate;
+
+      const servedUpdate = served.filter(s => s.idServed !== idServed);
+      const tableUpdated = Object.assign({}, tableToUpdate, {served: servedUpdate});
+
+      this.setState({table: tableUpdated});
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {

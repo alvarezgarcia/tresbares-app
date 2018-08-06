@@ -1,10 +1,10 @@
 import React from 'react';
 import { FABButton, Icon } from 'react-mdl';
 
-function RemoveDishButton({dishId, removeDishFn}) {
+function RemoveDishButton({servedId, removeDishFn}) {
 
   return (
-    <FABButton onClick={() => removeDishFn(dishId)}>
+    <FABButton onClick={() => removeDishFn(servedId)}>
       <Icon name="clear" />
     </FABButton>
   );

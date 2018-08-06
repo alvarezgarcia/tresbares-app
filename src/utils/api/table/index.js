@@ -6,7 +6,7 @@ const path = 'table';
 
 async function addDish(tableId, dish) {
 	const dishToAdd = {
-		productId: dish.productId,
+		idServed: dish.idServed,
 		name: dish.name,
 		price: dish.price
 	};
@@ -19,6 +19,14 @@ async function addDish(tableId, dish) {
 
 	const dishAddedRaw = await fetch(`${TRESBARES_API_URL}/${path}/${tableId}/dish`, opts);
 	return await dishAddedRaw.json();
+}
+
+async function removeDish(tableId, idServed) {
+	const opts = {
+		method: 'DELETE'
+	};
+
+	return await fetch(`${TRESBARES_API_URL}/${path}/${tableId}/dish/${idServed}`, opts);
 }
 
 async function getAll() {
@@ -49,8 +57,9 @@ async function close(tableId) {
 
 export {
   addDish,
+  removeDish,
   getAll,
   get,
   open,
-  close,
+  close
 };
