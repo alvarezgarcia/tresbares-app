@@ -21,27 +21,13 @@ function TBCardHeader(props) {
         <Chip>Mesa {props.info.tableNumber} (<i>{buildHumanDate(props.info.openAt)}</i>)</Chip> :
         <Chip>Mesa {props.info.tableNumber}</Chip>
       }
-      <Link to={`/detalle/${props.info._id}`}><Chip>+</Chip></Link>
+      {
+        props.info.open ?
+        <Link to={`/detalle/${props.info._id}`}><Chip>+</Chip></Link> :
+        null
+      }
     </CardTitle>
   )
 }
-
-/*
-const CabeceraTarjeta = ({abrirMesaFn, abierta, abiertaCuando, mesaNro, opsMesa, agregarProducto}) => (
-  <CardTitle style={{backgroundColor: '#fafafa', height: '50px', display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
-    <SwitchAbrir abrirMesaFn={abrirMesaFn} abierta={abierta} abiertaCuando={abiertaCuando} mesaNro={mesaNro} opsMesa={opsMesa} />
-    {
-      abierta ?
-      <Link to={`/detalle/${mesaNro}`}><Chip>Mesa {mesaNro} (<i>{construirFecha(abiertaCuando)}</i>)</Chip></Link> :
-      <Chip>Mesa {mesaNro}</Chip>
-    }
-    {
-      abierta ?
-      <Link to={`/agregar/${mesaNro}`}><Chip onClick={agregarProducto}>+</Chip></Link>:
-      null
-    }
-  </CardTitle>
-);
-*/
 
 export default TBCardHeader;
