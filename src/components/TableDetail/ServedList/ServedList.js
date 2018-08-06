@@ -19,8 +19,15 @@ function prepareDishesForList({dishes, removeDishFn}) {
 
 function ServedList(props) {
 	const list = prepareDishesForList(props);
+  const lastRow = {
+    name: <b>Total</b>,
+    price: list.reduce((acc, d) => acc + d.price, 0),
+    operation: null
+  };
 
-	return <GenericDishList list={list} />;
+
+  const updatedList = list.concat(lastRow);
+	return <GenericDishList list={updatedList} />;
 }
 
 export default ServedList;

@@ -71,8 +71,6 @@ class TableDetail extends Component {
   }
 
   render() {
-    console.log(this.state.table);
-
     return (
       <div style={{width: '100%', margin: 'auto'}}>
         <Grid>
