@@ -18,7 +18,9 @@ class TablesGrid extends Component {
   async componentDidMount() {
     try {
       const allTables = await table.getAll();
-      this.setState({tables: allTables})
+
+      const sortedTables = allTables.sort((tp, tc) => tp.tableNumber - tc.tableNumber);
+      this.setState({tables: sortedTables})
     } catch (err) {
       console.log(err);
     }
