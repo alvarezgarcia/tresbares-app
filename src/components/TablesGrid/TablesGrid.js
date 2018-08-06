@@ -26,7 +26,10 @@ class TablesGrid extends Component {
     }
 
     this.state.timer = setInterval(() => {
-      this.setState({tables: this.state.tables})
+      const {tables} = this.state;
+      const sortedTables = tables.sort((tp, tc) => tp.tableNumber - tc.tableNumber);
+
+      this.setState({tables: sortedTables})
     }, 1000);
   }
 
@@ -43,7 +46,9 @@ class TablesGrid extends Component {
       }
 
       const allTables = await table.getAll();
-      this.setState({tables: allTables})
+
+      const sortedTables = allTables.sort((tp, tc) => tp.tableNumber - tc.tableNumber);
+      this.setState({tables: sortedTables})
     } catch (err) {
       console.log(err);
     }
