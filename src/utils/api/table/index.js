@@ -26,6 +26,11 @@ async function getAll() {
   return tables.json();
 }
 
+async function get(tableId) {
+  const table = await fetch(`${TRESBARES_API_URL}/${path}/${tableId}`);
+  return table.json();
+}
+
 async function open(tableId) {
   const opts = {
     method: 'POST'
@@ -45,6 +50,7 @@ async function close(tableId) {
 export {
   addDish,
   getAll,
+  get,
   open,
-  close
+  close,
 };

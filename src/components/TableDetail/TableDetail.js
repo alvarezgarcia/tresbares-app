@@ -10,15 +10,20 @@ class TableDetail extends Component {
     super();
     
     this.state = {};
-		this.state.tableId = props.tableId;
     this.state.dishes = [];
+    this.state.table = {};
 
 		this.addDishToTable = this.addDishToTable.bind(this);
   }
 
   async componentDidMount() {
     try {
-      const allDishes = await dish.getAll();
+      const requests = [
+        table.get(this.props.tableId),
+        dish.getAll()
+      ];
+
+      const [tableInfo, allDishes] = await Promise.all(requests);
       this.setState({dishes: allDishes})
     } catch (err) {
       console.log(err);
@@ -29,7 +34,7 @@ class TableDetail extends Component {
 		const dish = this.state.dishes.find(dish => dish._id === dishId)
 
 		try {
-			const dishAdded = await table.addDish(this.state.tableId, dish);
+			const dishAdded = await table.addDish(this.props.tableId, dish);
 			console.log('DA', dishAdded);
 		} catch (err) {
       console.log(err);
