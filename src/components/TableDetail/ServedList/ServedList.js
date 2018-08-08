@@ -1,5 +1,4 @@
 import React from 'react';
-import { DataTable, TableHeader, FABButton, Icon } from 'react-mdl';
 
 import GenericDishList from './../../misc/GenericDishList/GenericDishList';
 import RemoveDishButton from './../RemoveDishButton/RemoveDishButton';
