@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Redirect } from 'react-router-dom';
+
 import TablesList from './TablesList/TablesList';
 import ConfirmCloseTable from './ConfirmCloseTable/ConfirmCloseTable';
 
@@ -11,6 +13,7 @@ class TablesGrid extends Component {
 
     this.state = {};
 		this.state.showCloseConfirmTable = false;
+		this.state.redirectToClosedTable = null;
 		this.state.tableIdToClose = null;
     this.state.timer = null;
     this.state.tables = [];
@@ -56,6 +59,7 @@ class TablesGrid extends Component {
         await table.close(tableId);
 
 				newState.showCloseConfirmTable = false;
+				newState.redirectToClosedTable = tableId;
       }
 
       const allTables = await table.getAll();
@@ -71,6 +75,8 @@ class TablesGrid extends Component {
 
   render() {
     return (
+			this.state.redirectToClosedTable ?
+			<Redirect to={`/resumen/${this.state.redirectToClosedTable}`} /> :
 			<div>
 				<ConfirmCloseTable show={this.state.showCloseConfirmTable} tableIdToClose={this.state.tableIdToClose} fnOperateTable={this.operateTable} />
 				<TablesList tables={this.state.tables} fnOperateTable={this.operateTable} />

@@ -4,6 +4,7 @@ import { Layout, Header, Drawer, Navigation, Content } from 'react-mdl';
 
 import TablesGrid from './../TablesGrid/TablesGrid';
 import TableDetail from './../TableDetail/TableDetail';
+import TableSummary from './../TableSummary/TableSummary';
 
 class Main extends Component {
   render() {
@@ -21,6 +22,7 @@ class Main extends Component {
           <Switch>
             <Route path="/grilla" render={ () => <TablesGrid /> }/>
             <Route path="/detalle/:tableId" render={ (props) => <TableDetail tableId={props.match.params.tableId} /> }/>
+            <Route path="/resumen/:tableId" render={ (props) => <TableSummary tableId={props.match.params.tableId} /> }/>
 
             <Redirect to="/grilla" />
           </Switch>
