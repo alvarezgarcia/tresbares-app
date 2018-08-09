@@ -1,13 +1,12 @@
 import React from 'react';
 
-import GenericDishList from './../../misc/GenericDishList/GenericDishList';
+import GenericDishListWithoutTitles from './../../misc/GenericDishListWithoutTitles/GenericDishListWithoutTitles';
 
 function prepareDishesForList({list: dishes}) {
 	const list = dishes.map(d => {
 		return {
 			name: d.name,
 			price: d.price,
-			// operation: <RemoveDishButton servedId={d.idServed} removeDishFn={removeDishFn} />
 			operation: null
 		};
 	});
@@ -20,7 +19,7 @@ function SummaryList(props) {
 
 	return (
     <div>
-      <GenericDishList list={list} />
+      <GenericDishListWithoutTitles list={list} />
     </div>
   );
 }
