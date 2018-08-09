@@ -7,6 +7,7 @@ import { dish, table } from './../../utils/api';
 
 import DishesList from './DishesList/DishesList';
 import ServedList from './ServedList/ServedList';
+import TBFlexibleCard from './../misc/TBFlexibleCard/TBFlexibleCard';
 
 class TableDetail extends Component {
   constructor(props) {
@@ -78,14 +79,22 @@ class TableDetail extends Component {
             {
               this.state.dishes.length === 0 ?
               <div>Loading</div>:
-              <DishesList dishes={this.state.dishes} addDishFn={this.addDishToTable} />
+              <div>
+                <TBFlexibleCard title="Productos"/>
+                <br />
+                <DishesList dishes={this.state.dishes} addDishFn={this.addDishToTable} />
+              </div>
             }
           </Cell>
           <Cell col={6}>
             {
               this.state.dishes.length === 0 ?
               <div>Loading</div>:
-              <ServedList dishes={this.state.table.served} removeDishFn={this.removeDishFromTable} />
+              <div>
+                <TBFlexibleCard title="Servidos"/>
+                <br />
+                <ServedList dishes={this.state.table.served} removeDishFn={this.removeDishFromTable} />
+              </div>
             }
           </Cell>
         </Grid>
